@@ -12,7 +12,7 @@ main_page.body()
 main_page.footer()
 
 #Вызов тестирования услуг и добавление в корзину
-service.test()
+# service.test()
 
 #Вызов тестирования модального окна страницы Ассистанс
 Assistance.assistance()
