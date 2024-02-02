@@ -1,0 +1,42 @@
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  tags:
+    - docker-builder
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build
+      --tag $CI_REGISTRY_IMAGE:latest
+      --cache-from $CI_REGISTRY_IMAGE:latest
+      .
+    - docker push $CI_REGISTRY_IMAGE:latest
+#    - docker run -d -p 4444:4444 --shm-size=2g $CI_REGISTRY_IMAGE:latest
+
+#  Run selenium tests
+selenium:
+  stage: test
+  tags:
+    - docker
+  image: reg.cic.kz/sosmed/autotests
+  services:
+    - name: selenium/standalone-chrome:latest
+      alias: selenium
+
+  variables:
+    APP_ENV: CI
+
+  script:
+    # - apt update
+    # - apt install python3 pip
+    # - wget https://bootstrap.pypa.io/get-pip.py
+    # - python3 get-pip.py
+    # - python3 -m pip install -r requirements.txt --user
+    - python3 main.py
+
+###########
