@@ -4,6 +4,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from config import browser
 
 def assistance():
+    #Заполнение модалки
     element_to_hover_over_service = browser.find_element(By.XPATH, "/html/body/div[1]/div/div/header/div[3]/div/ul/li[1]/div")
     hover = ActionChains(browser).move_to_element(element_to_hover_over_service)
     hover.perform()
@@ -19,3 +20,4 @@ def assistance():
     browser.find_element(By.XPATH, "/html/body/div[3]/div/div[2]/div/div[2]/div[2]/form/div[4]/div/div/span/input").send_keys('test@test.test')
     browser.find_element(By.XPATH, "/html/body/div[3]/div/div[2]/div/div[2]/div[2]/form/div[1]/div/div/span/textarea").send_keys('testtestetstestestetestettetetestetest')
     browser.find_element(By.XPATH, "/html/body/div[3]/div/div[2]/div/div[2]/button").click()
+    print("assistance done")

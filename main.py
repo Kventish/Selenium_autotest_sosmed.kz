@@ -1,25 +1,15 @@
-import main_page
-import service
-import Assistance
-import Check_Up
+import tests.main_page as main_page
+import tests.service as service
+import tests.Assistance as Assistance
+import tests.Check_Up as Check_Up
+import tests.doctors as doctors
+import tests.Preyskurant as Preyskurant
+import tests.Mc_Tole_Bi as Mc_Tole_Bi
+import tests.Mc_Dostyk as Mc_Dostyk
+import tests.cart as cart
+import time
 
-#Вызов тестирования шапки главной страницы страницы
-main_page.header()
-
-# #Вызов тестирования тела главной страницы
-main_page.body()
-
-# #Вызов тестирования футера главной страницы
-main_page.footer()
-
-#Вызов тестирования услуг и добавление в корзину
-service.test()
-
-#Вызов тестирования модального окна страницы Ассистанс
-Assistance.assistance()
-
-#Вызов тестирования модального окна страницы Акции
-Check_Up.stock()
-
-#Вызов тестирования модального окна страницы Программы
-Check_Up.programm()
+functions_array = [main_page.header, main_page.body, main_page.footer,service.test,Assistance.assistance,Check_Up.stock,Check_Up.programm,doctors.docktors_main,doctors.doctor_page,Preyskurant.preyskurant,Mc_Tole_Bi.button_check,Mc_Dostyk.button_check,cart.check_button]
+for function in functions_array:
+    function()
+    time.sleep(5)
